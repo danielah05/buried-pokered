@@ -1,43 +1,23 @@
-# Pokémon Red and Blue [![Build Status][ci-badge]][ci]
+# Buried PokeRed
+A fork of https://github.com/pret/pokered that hides a dark secret in Lavender Town...
 
-This is a disassembly of Pokémon Red and Blue.
+## Finding Buried Alive
+1. Get the Poke Doll from the Celadon Department Store
+2. Just simply use it when fighting against the Ghost of Marowak inside the Pokemon Tower
+3. Go up the stairs and interact with the right Grave Stone (Hint: Make sure to backup your save file.)
 
-It builds the following ROMs:
-
-- Pokemon Red (UE) [S][!].gb `sha1: ea9bcae617fdf159b045185467ae58b2e4a48b9a`
-- Pokemon Blue (UE) [S][!].gb `sha1: d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`
-- BLUEMONS.GB (debug build) `sha1: 5b1456177671b79b263c614ea0e7cc9ac542e9c4`
-- dmgapae0.e69.patch `sha1: 0fb5f743696adfe1dbb2e062111f08f9bc5a293a`
-- dmgapee0.e68.patch `sha1: ed4be94dc29c64271942c87f2157bca9ca1019c7`
-
-To set up the repository, see [**INSTALL.md**](INSTALL.md).
+![image](https://user-images.githubusercontent.com/35849198/169170060-d17eb5ce-1db1-4d32-9387-e07794598512.png)
 
 
-## See also
+# Credits
+Thank you to everyone behind PRET for creating the pokered disassembly!  
+BIG Thanks to QueenKami for creating the original Buried Alive sprites!  
+Here is a list of all the sprites:  
+https://www.deviantart.com/queenkami/art/The-White-Hand-Sprite-177961372  
+https://www.deviantart.com/queenkami/art/The-Buried-Alive-Model-177957335  
+https://www.deviantart.com/queenkami/art/Game-Over-191028786
 
-- **Discord:** [pret][discord]
-- **IRC:** [libera#pret][irc]
-
-Other disassembly projects:
-
-- [**Pokémon Yellow**][pokeyellow]
-- [**Pokémon Gold/Silver**][pokegold]
-- [**Pokémon Crystal**][pokecrystal]
-- [**Pokémon Pinball**][pokepinball]
-- [**Pokémon TCG**][poketcg]
-- [**Pokémon Ruby**][pokeruby]
-- [**Pokémon FireRed**][pokefirered]
-- [**Pokémon Emerald**][pokeemerald]
-
-[pokeyellow]: https://github.com/pret/pokeyellow
-[pokegold]: https://github.com/pret/pokegold
-[pokecrystal]: https://github.com/pret/pokecrystal
-[pokepinball]: https://github.com/pret/pokepinball
-[poketcg]: https://github.com/pret/poketcg
-[pokeruby]: https://github.com/pret/pokeruby
-[pokefirered]: https://github.com/pret/pokefirered
-[pokeemerald]: https://github.com/pret/pokeemerald
-[discord]: https://discord.gg/d5dubZ3
-[irc]: https://web.libera.chat/?#pret
-[ci]: https://github.com/pret/pokered/actions
-[ci-badge]: https://github.com/pret/pokered/actions/workflows/main.yml/badge.svg
+## Compiling
+You compile this the same way as you compile the pokered disassembly.  
+If you are not sure how you do this, don't worry! You can always download the patch in the Release tab!  
+If you STILL wanna compile this, read this: https://github.com/pret/pokered/blob/master/INSTALL.md
