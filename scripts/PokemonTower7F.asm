@@ -1,4 +1,5 @@
 PokemonTower7F_Script:
+	call DollOnGhostCheck
 	call EnableAutoTextBoxDrawing
 	ld hl, PokemonTower7TrainerHeaders
 	ld de, PokemonTower7F_ScriptPointers
@@ -6,6 +7,37 @@ PokemonTower7F_Script:
 	call ExecuteCurMapScriptInTable
 	ld [wPokemonTower7FCurScript], a
 	ret
+
+DollOnGhostCheck:
+	ld hl, wCurrentMapScriptFlags
+	bit 5, [hl]
+	res 5, [hl]
+	ret z
+	CheckEvent EVENT_USED_DOLL_GHOST_MAROWAK
+	ret z
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; hide and show a bunch of stuff
+	ld a, HS_POKEMON_TOWER_7F_MR_FUJI ; hide mr fuji
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_POKEMON_TOWER_7F_ROCKET_1 ; hide rocket 1
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_POKEMON_TOWER_7F_ROCKET_2 ; hide rocket 2
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_POKEMON_TOWER_7F_ROCKET_3 ; hide rocket 3
+	ld [wMissableObjectIndex], a
+	predef HideObject
+	ld a, HS_POKEMON_TOWER_7F_BURIED_ALIVE ; show the funny
+	ld [wMissableObjectIndex], a
+	predef ShowObject
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; done with hiding and showing, lets put down some graves
+	ld a, $4c ; double graves, how
+	ld [wNewTileBlockID], a ; specify that the two graves are the new tile block
+	lb bc, 1, 5 ; set them at 5x y1
+	predef_jump ReplaceTileBlock ; replace blocks!!!
 
 PokemonTower7Script_60d18:
 	xor a
@@ -191,6 +223,7 @@ PokemonTower7F_TextPointers:
 	dw PokemonTower7Text2
 	dw PokemonTower7Text3
 	dw PokemonTower7FujiText
+	dw GraveText
 
 PokemonTower7TrainerHeaders:
 	def_trainers
@@ -200,8 +233,16 @@ PokemonTower7TrainerHeader1:
 	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_1, 3, PokemonTower7BattleText2, PokemonTower7EndBattleText2, PokemonTower7AfterBattleText2
 PokemonTower7TrainerHeader2:
 	trainer EVENT_BEAT_POKEMONTOWER_7_TRAINER_2, 3, PokemonTower7BattleText3, PokemonTower7EndBattleText3, PokemonTower7AfterBattleText3
+BuriedAliveTrainerHeader:
+	trainer EVENT_BEAT_POKEMONTOWER_7_BURIEDALIVE_0, 0, BuriedAliveBattleText, GraveEndText, BuriedAliveBattleText
 	db -1 ; end
 
+GraveText:
+	text_asm
+	ld hl, BuriedAliveTrainerHeader
+	call TalkToTrainer
+	jp TextScriptEnd
+	
 PokemonTower7Text1:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader0
@@ -239,6 +280,43 @@ PokemonTower7FujiText:
 	ld [wPokemonTower7FCurScript], a
 	ld [wCurMapScript], a
 	jp TextScriptEnd
+
+; the ClearSAV code is in a file we cant access using a simple callfar, instead i just lazily copy it over here and rename it slightly. still works!
+
+ClearSAVTower:
+	ld a, SRAM_ENABLE
+	ld [MBC1SRamEnable], a
+	ld a, $1
+	ld [MBC1SRamBankingMode], a
+	xor a
+	call PadSRAM_FFTower
+	ld a, $1
+	call PadSRAM_FFTower
+	ld a, $2
+	call PadSRAM_FFTower
+	ld a, $3
+	call PadSRAM_FFTower
+	xor a
+	ld [MBC1SRamBankingMode], a
+	ld [MBC1SRamEnable], a
+	ret
+
+PadSRAM_FFTower:
+	ld [MBC1SRamBank], a
+	ld hl, SRAM_Begin
+	ld bc, SRAM_End - SRAM_Begin
+	ld a, $ff
+	jp FillMemory
+
+GraveEndText:
+	text_asm
+	callfar ClearSAVTower ; delete the save file :(
+	call FadePal1 ; according to the creepypasta, when winning against buried alive the game crashes or something. of course, i am a genius. so i just call FadePal1 here because it just crashes the game instantly!
+	jp TextScriptEnd
+
+BuriedAliveBattleText:
+	text_far _BuriedAliveGraveText
+	text_end
 
 TowerRescueFujiText:
 	text_far _TowerRescueFujiText

@@ -1601,6 +1601,11 @@ ItemUsePokedoll:
 	ld a, [wIsInBattle]
 	dec a
 	jp nz, ItemUseNotTime
+	ld a, [wCurOpponent]
+	cp RESTLESS_SOUL
+	jr nz, .skipGhostDoll
+	SetEvent EVENT_USED_DOLL_GHOST_MAROWAK ; when using the pokedoll on the ghost marowak (aka RESTLESS_SOUL), we set a custom event so we can activate the buried alive stuff
+.skipGhostDoll
 	ld a, $01
 	ld [wEscapedFromBattle], a
 	jp PrintItemUseTextAndRemoveItem

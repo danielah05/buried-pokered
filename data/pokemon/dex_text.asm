@@ -298,6 +298,11 @@ _TangelaDexEntry::
 	next "shake as it walks"
 	dex
 
+_WhiteHandDexEntry::
+	text "Hey,"
+	next "stop cheating."
+	dex
+
 _GrowlitheDexEntry::
 	text "Very protective"
 	next "of its territory."

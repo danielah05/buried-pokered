@@ -46,3 +46,4 @@ TrainerNames::
 	db "CHANNELER@"
 	db "AGATHA@"
 	db "LANCE@"
+	db "BURIEDALIVE@" ; wtf... real?

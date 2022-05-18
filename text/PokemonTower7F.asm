@@ -76,3 +76,12 @@ _PokemonTower7AfterBattleText3::
 	text "You're not getting"
 	line "away with this!"
 	done
+
+_BuriedAliveGraveText::
+	text "You're here..."
+	line "I'm lonely."
+
+	para "so very lonely..."
+	line "Won't you join me?"
+	done
+

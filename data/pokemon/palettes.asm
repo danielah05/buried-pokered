@@ -152,4 +152,5 @@ MonsterPalettes:
 	db PAL_BROWNMON  ; DRAGONITE
 	db PAL_MEWMON    ; MEWTWO
 	db PAL_MEWMON    ; MEW
+	db PAL_MEWMON    ; WHITE HAND. white hand in the video is just a reskined mew, so it uses the same palette as mew.
 	assert_table_length NUM_POKEMON + 1

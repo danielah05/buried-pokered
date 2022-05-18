@@ -77,6 +77,7 @@ SHOW EQU $15
 	const HS_POKEMON_TOWER_7F_ROCKET_2     ; 41 X
 	const HS_POKEMON_TOWER_7F_ROCKET_3     ; 42 X
 	const HS_POKEMON_TOWER_7F_MR_FUJI      ; 43
+	const HS_POKEMON_TOWER_7F_BURIED_ALIVE ; funny moment
 	const HS_MR_FUJIS_HOUSE_MR_FUJI        ; 44
 	const HS_CELADON_MANSION_EEVEE_GIFT    ; 45
 	const HS_GAME_CORNER_ROCKET            ; 46
@@ -195,7 +196,7 @@ SHOW EQU $15
 	const HS_SILPH_CO_11F_1                ; B7
 	const HS_SILPH_CO_11F_2                ; B8
 	const HS_SILPH_CO_11F_3                ; B9
-	const HS_UNUSED_MAP_F4_1               ; BA XXX sprite doesn't exist
+	;const HS_UNUSED_MAP_F4_1               ; BA XXX sprite doesn't exist
 	const HS_POKEMON_MANSION_2F_ITEM       ; BB X
 	const HS_POKEMON_MANSION_3F_ITEM_1     ; BC X
 	const HS_POKEMON_MANSION_3F_ITEM_2     ; BD X

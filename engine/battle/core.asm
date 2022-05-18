@@ -1135,7 +1135,7 @@ HandlePlayerBlackOut:
 	jr z, .notRival1Battle
 	ld a, [wCurOpponent]
 	cp OPP_RIVAL1
-	jr nz, .notRival1Battle
+	jr nz, .BuriedAliveBattle
 	hlcoord 0, 0  ; rival 1 battle
 	lb bc, 8, 21
 	call ClearScreenArea
@@ -1146,6 +1146,21 @@ HandlePlayerBlackOut:
 	call PrintText
 	ld a, [wCurMap]
 	cp OAKS_LAB
+	ret z            ; starter battle in oak's lab: don't black out
+.BuriedAliveBattle
+	cp OPP_BURIEDALIVE
+	jr nz, .notRival1Battle ; make sure to exit this code if we arent battling buried alive
+	;hlcoord 0, 0  ; buried alive end animation, needs a lot of tweaking
+	;lb bc, 8, 21
+	;call ClearScreenArea
+	;call ScrollTrainerPicAfterBattle
+	;ld c, 40
+	;call DelayFrames
+	ld hl, BuriedAliveBattleLostText ; replace this
+	call PrintText
+	jp GameOverScript
+	ld a, [wCurMap]
+	cp POKEMON_TOWER_7F_ALT
 	ret z            ; starter battle in oak's lab: don't black out
 .notRival1Battle
 	ld b, SET_PAL_BATTLE_BLACK
@@ -1164,6 +1179,76 @@ HandlePlayerBlackOut:
 	scf
 	ret
 
+GameOverScript:
+	farcall ClearSAV ; delete the save file :(
+	ld a, $FF
+	ld [wJoyIgnore], a
+	call ClearScreen
+	ld [wUpdateSpritesEnabled], a ; lmao!
+	call ClearSprites
+	ld a, SFX_STOP_ALL_MUSIC
+	call PlaySound
+	; pretty much get rid of the game, its time to draw the game over screen!
+	ld de, BuriedGameOverPic
+	lb bc, BANK(BuriedGameOverPic), $00
+	call DisplayPicCentered
+	ld c, BANK(Music_Lavender)
+	ld a, MUSIC_LAVENDER
+	call PlayMusic
+	call FadeInPic
+	ld hl, GraveGameOverText ; make gameover
+	call PrintText
+.loop ; yes i use a loop here, without it the game would continue the blacking out code. very shitty method of fixing it but it works
+	jp .loop
+
+FadeInPic:
+	ld hl, FadePalettes
+	ld b, 6
+.next
+	ld a, [hli]
+	ldh [rBGP], a
+	ld c, 10
+	call DelayFrames
+	dec b
+	jr nz, .next
+	ret
+
+FadePalettes:
+	db %01010100
+	db %10101000
+	db %11111100
+	db %11111000
+	db %11110100
+	db %11100100
+
+DisplayPicCentered:
+; b = bank
+; de = address of compressed pic
+; c: 0 = centred, non-zero = upper-right
+	push bc
+	ld a, b
+	call UncompressSpriteFromDE
+	ld hl, sSpriteBuffer1
+	ld de, sSpriteBuffer0
+	ld bc, $310
+	call CopyData
+	ld de, vFrontPic
+	call InterlaceMergeSpriteBuffers
+	pop bc
+	ld a, c
+	and a
+	hlcoord 15, 1
+	jr nz, .next
+	hlcoord 6, 4
+.next
+	xor a
+	ldh [hStartTileID], a
+	predef_jump CopyUncompressedPicToTilemap
+
+GraveGameOverText:
+	text_far _GraveGameOverText
+	text_end
+
 Rival1WinText:
 	text_far _Rival1WinText
 	text_end
@@ -1175,6 +1260,11 @@ PlayerBlackedOutText2:
 LinkBattleLostText:
 	text_far _LinkBattleLostText
 	text_end
+
+BuriedAliveBattleLostText:
+	text_far _BuriedAliveBattleLostText
+	text_end
+	
 
 ; slides pic of fainted mon downwards until it disappears
 ; bug: when this is called, [hAutoBGTransferEnabled] is non-zero, so there is screen tearing
@@ -6906,8 +6996,16 @@ _LoadTrainerPic:
 	ld d, a ; de contains pointer to trainer pic
 	ld a, [wLinkState]
 	and a
+	jr nz, .loadLinkBattle
+	ld a, [wCurOpponent]
+	cp OPP_BURIEDALIVE ; buried alive is on a separate bank, because of this we have to switch banks when fighting against him
+	jr z, .LoadTrainerPicBuried
 	ld a, BANK("Pics 6") ; this is where all the trainer pics are (not counting Red's)
-	jr z, .loadSprite
+	jr .loadSprite
+.LoadTrainerPicBuried:
+	ld a, BANK("Pics 7") ; this is where all the trainer pics are (not counting Red's)
+	jr .loadSprite
+.loadLinkBattle
 	ld a, BANK(RedPicFront)
 .loadSprite
 	call UncompressSpriteFromDE

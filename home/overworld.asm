@@ -343,6 +343,8 @@ OverworldLoopLessDelay::
 	ld a, [wCurMap]
 	cp OAKS_LAB
 	jp z, .noFaintCheck ; no blacking out if the player lost to the rival in Oak's lab
+	cp POKEMON_TOWER_7F_ALT
+	jp z, .noFaintCheck ; no blacking out if the player lost to buried alive
 	callfar AnyPartyAlive
 	ld a, d
 	and a
@@ -356,6 +358,7 @@ OverworldLoopLessDelay::
 	ld [wIsInBattle], a
 	call RunMapScript
 	jp HandleBlackOut
+	
 
 ; function to determine if there will be a battle and execute it (either a trainer battle or wild battle)
 ; sets carry if a battle occurred and unsets carry if not

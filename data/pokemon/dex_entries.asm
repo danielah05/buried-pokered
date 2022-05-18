@@ -30,7 +30,7 @@ PokedexEntryPointers:
 	dw BlastoiseDexEntry
 	dw PinsirDexEntry
 	dw TangelaDexEntry
-	dw MissingNoDexEntry
+	dw WhiteHandDexEntry ; white hand!!!
 	dw MissingNoDexEntry
 	dw GrowlitheDexEntry
 	dw OnixDexEntry
@@ -405,6 +405,13 @@ TangelaDexEntry:
 	db 3,3
 	dw 770
 	text_far _TangelaDexEntry
+	text_end
+
+WhiteHandDexEntry:
+	db "NEW SPECIE@"
+	db 1,4
+	dw 90
+	text_far _WhiteHandDexEntry
 	text_end
 
 GrowlitheDexEntry:

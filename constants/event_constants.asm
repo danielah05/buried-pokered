@@ -772,4 +772,7 @@
 
 ; End of events
 	const_next $A00
+	const_skip 4
+	const EVENT_BEAT_POKEMONTOWER_7_BURIEDALIVE_0
+	const EVENT_USED_DOLL_GHOST_MAROWAK
 NUM_EVENTS EQU const_value

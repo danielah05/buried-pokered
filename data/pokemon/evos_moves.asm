@@ -33,7 +33,7 @@ EvosMovesPointerTable:
 	dw BlastoiseEvosMoves
 	dw PinsirEvosMoves
 	dw TangelaEvosMoves
-	dw MissingNo1FEvosMoves
+	dw WhiteHandEvosMoves ; ohhhhhh my godddddddddddd
 	dw MissingNo20EvosMoves
 	dw GrowlitheEvosMoves
 	dw OnixEvosMoves
@@ -540,10 +540,14 @@ TangelaEvosMoves:
 	db 49, GROWTH
 	db 0
 
-MissingNo1FEvosMoves:
+WhiteHandEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 10, TRANSFORM
+	db 20, MEGA_PUNCH
+	db 30, METRONOME
+	db 40, PSYCHIC_M
 	db 0
 
 MissingNo20EvosMoves:

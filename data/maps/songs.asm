@@ -244,7 +244,7 @@ MapSongBanks::
 	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F1
 	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F2
 	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F3
-	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F4
+	db MUSIC_POKEMON_TOWER, BANK(Music_PokemonTower) ; buried alive room
 	db MUSIC_GYM, BANK(Music_Gym) ; LORELEIS_ROOM
 	db MUSIC_DUNGEON1, BANK(Music_Dungeon1) ; BRUNOS_ROOM
 	db MUSIC_POKEMON_TOWER, BANK(Music_PokemonTower) ; AGATHAS_ROOM

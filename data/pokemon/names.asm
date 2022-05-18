@@ -30,7 +30,7 @@ MonsterNames::
 	db "BLASTOISE@"
 	db "PINSIR@@@@"
 	db "TANGELA@@@"
-	db "MISSINGNO."
+	db "WHITE HAND" ; white hand
 	db "MISSINGNO."
 	db "GROWLITHE@"
 	db "ONIX@@@@@@"

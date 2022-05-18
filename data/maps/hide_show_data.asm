@@ -247,7 +247,7 @@ MapHSPointers:
 	dw NoHS
 	dw NoHS
 	dw NoHS
-	dw UnusedMapF4HS
+	dw NoHS
 	dw NoHS
 	dw NoHS
 	dw NoHS
@@ -355,6 +355,7 @@ PokemonTower7FHS:
 	db POKEMON_TOWER_7F, $02, SHOW
 	db POKEMON_TOWER_7F, $03, SHOW
 	db POKEMON_TOWER_7F, $04, SHOW
+	db POKEMON_TOWER_7F, $05, HIDE
 MrFujisHouseHS:
 	db MR_FUJIS_HOUSE, $05, HIDE
 CeladonMansionRoofHouseHS:
@@ -505,8 +506,6 @@ SilphCo11FHS:
 	db SILPH_CO_11F, $03, SHOW
 	db SILPH_CO_11F, $04, SHOW
 	db SILPH_CO_11F, $05, SHOW
-UnusedMapF4HS:
-	db UNUSED_MAP_F4, $02, SHOW
 PokemonMansion2FHS:
 	db POKEMON_MANSION_2F, $02, SHOW
 PokemonMansion3FHS:

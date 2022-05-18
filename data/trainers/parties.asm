@@ -46,6 +46,7 @@ TrainerDataPointers:
 	dw ChannelerData
 	dw AgathaData
 	dw LanceData
+	dw BuriedAliveData
 
 ; if first byte != $FF, then
 	; first byte is level (of all pokemon on this team)
@@ -740,3 +741,8 @@ AgathaData:
 
 LanceData:
 	db $FF, 58, GYARADOS, 56, DRAGONAIR, 56, DRAGONAIR, 60, AERODACTYL, 62, DRAGONITE, 0
+
+BuriedAliveData:
+	db $FF, 94, MUK, 90, GENGAR, 101, WHITEHAND, 101, WHITEHAND, 0
+;	db $FF, 100, WHITEHAND, 100, GENGAR, 101, WHITEHAND, 101, WHITEHAND, 0 ; debug
+;	db $FF, 1, MAGIKARP, 0                                                 ; debug

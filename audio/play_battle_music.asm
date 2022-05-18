@@ -19,8 +19,13 @@ PlayBattleMusic::
 	cp OPP_RIVAL3
 	jr z, .finalBattle
 	cp OPP_LANCE
-	jr nz, .normalTrainerBattle
+	jr nz, .skipLanceBattle
 	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
+	jr .playSong
+.skipLanceBattle
+	cp OPP_BURIEDALIVE
+	jr nz, .normalTrainerBattle
+	ld a, MUSIC_GYM_LEADER_BATTLE ; buried alive also plays gym leader theme
 	jr .playSong
 .normalTrainerBattle
 	ld a, MUSIC_TRAINER_BATTLE

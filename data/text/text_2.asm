@@ -908,6 +908,16 @@ _LinkBattleLostText::
 	text "!"
 	prompt
 
+_BuriedAliveBattleLostText::
+	text "Finally..."
+	
+	para "Raw meat..."
+	prompt
+
+_GraveGameOverText::
+	text "    GAME OVER."
+	done
+
 _TrainerAboutToUseText::
 	text_ram wTrainerName
 	text " is"

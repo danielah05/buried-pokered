@@ -262,7 +262,7 @@ FIRST_INDOOR_MAP EQU const_value
 	mapconst UNUSED_MAP_F1,                  0,  0 ; $F1
 	mapconst UNUSED_MAP_F2,                  0,  0 ; $F2
 	mapconst UNUSED_MAP_F3,                  0,  0 ; $F3
-	mapconst UNUSED_MAP_F4,                  0,  0 ; $F4
+	mapconst POKEMON_TOWER_7F_ALT,           9, 10 ; $F4 buried alive room
 	mapconst LORELEIS_ROOM,                  6,  5 ; $F5
 	mapconst BRUNOS_ROOM,                    6,  5 ; $F6
 	mapconst AGATHAS_ROOM,                   6,  5 ; $F7

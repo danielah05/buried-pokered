@@ -11,5 +11,6 @@ PokemonTower7F_Object:
 	object_event 12,  9, SPRITE_ROCKET, STAY, LEFT, 2, OPP_ROCKET, 20
 	object_event  9,  7, SPRITE_ROCKET, STAY, RIGHT, 3, OPP_ROCKET, 21
 	object_event 10,  3, SPRITE_MR_FUJI, STAY, DOWN, 4 ; person
+	object_event 11, 2, SPRITE_EMPTY_SPRITE, STAY, DOWN, 5, OPP_BURIEDALIVE, 1 ; buried alive
 
 	def_warps_to POKEMON_TOWER_7F

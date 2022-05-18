@@ -49,6 +49,7 @@ TrainerNamePointers:
 	dw wTrainerName
 	dw wTrainerName
 	dw wTrainerName
+	dw .BuriedAliveName ; buried alive
 
 .YoungsterName:     db "YOUNGSTER@"
 .BugCatcherName:    db "BUG CATCHER@"
@@ -71,3 +72,4 @@ TrainerNamePointers:
 .RocketName:        db "ROCKET@"
 .CooltrainerMName:  db "COOLTRAINER♂@"
 .CooltrainerFName:  db "COOLTRAINER♀@"
+.BuriedAliveName:   db "BURIEDALIVE@"
