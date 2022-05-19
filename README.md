@@ -20,4 +20,4 @@ https://www.deviantart.com/queenkami/art/Game-Over-191028786
 ## Compiling
 You compile this the same way as you compile the pokered disassembly.  
 If you are not sure how you do this, don't worry! You can always download the patch in the Release tab!  
-If you STILL wanna compile this, read this: https://github.com/pret/pokered/blob/master/INSTALL.md
+If you STILL wanna compile this, read this: https://github.com/danielah05/buried-pokered/blob/main/INSTALL.md
