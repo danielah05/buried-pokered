@@ -1186,21 +1186,21 @@ HandlePlayerBlackOut:
 GameOverScript:
 	farcall ClearSAV ; delete the save file :(
 	ld a, $FF
-	ld [wJoyIgnore], a
-	call ClearScreen
-	ld [wUpdateSpritesEnabled], a ; lmao!
-	call ClearSprites
+	ld [wJoyIgnore], a ; ignore any inputs from player
+	call ClearScreen ; turn the screen shite
+	ld [wUpdateSpritesEnabled], a
+	call ClearSprites ; clear all the currents sprites
 	ld a, SFX_STOP_ALL_MUSIC
-	call PlaySound
+	call PlaySound ; kill music
 	; pretty much get rid of the game, its time to draw the game over screen!
 	ld de, BuriedGameOverPic
 	lb bc, BANK(BuriedGameOverPic), $00
-	call DisplayPicCentered
+	call DisplayPicCentered ; render game over image
 	ld c, BANK(Music_Lavender)
 	ld a, MUSIC_LAVENDER
-	call PlayMusic
+	call PlayMusic ; start lavender town music
 	call FadeInPic
-	ld hl, GraveGameOverText ; make gameover
+	ld hl, GraveGameOverText ; render gameover text
 	call PrintText
 .loop ; yes i use a loop here, without it the game would continue the blacking out code. very shitty method of fixing it but it works
 	jp .loop
