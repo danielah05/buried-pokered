@@ -908,10 +908,12 @@ _LinkBattleLostText::
 	text "!"
 	prompt
 
-_BuriedAliveBattleLostText::
+_BuriedAliveBattleLostText1::
 	text "Finally..."
+	prompt
 	
-	para "Raw meat..."
+_BuriedAliveBattleLostText2::
+	text "Raw meat..."
 	prompt
 
 _GraveGameOverText::

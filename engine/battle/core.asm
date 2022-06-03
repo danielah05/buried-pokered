@@ -1156,7 +1156,11 @@ HandlePlayerBlackOut:
 	;call ScrollTrainerPicAfterBattle
 	;ld c, 40
 	;call DelayFrames
-	ld hl, BuriedAliveBattleLostText ; replace this
+	ld hl, BuriedAliveBattleLostText1 ; text 1
+	call PrintText
+	ld a, SFX_STOP_ALL_MUSIC ; kill music just like in the video when text 2 appears
+	call PlaySound
+	ld hl, BuriedAliveBattleLostText2 ; text 2
 	call PrintText
 	jp GameOverScript
 	ld a, [wCurMap]
@@ -1261,8 +1265,12 @@ LinkBattleLostText:
 	text_far _LinkBattleLostText
 	text_end
 
-BuriedAliveBattleLostText:
-	text_far _BuriedAliveBattleLostText
+BuriedAliveBattleLostText1:
+	text_far _BuriedAliveBattleLostText1
+	text_end
+
+BuriedAliveBattleLostText2:
+	text_far _BuriedAliveBattleLostText2
 	text_end
 	
 

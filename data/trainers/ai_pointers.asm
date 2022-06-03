@@ -51,5 +51,5 @@ TrainerAIPointers:
 	dbw 3, GenericAI
 	dbw 2, AgathaAI ; agatha
 	dbw 1, LanceAI ; lance
-	dbw 3, GenericAI ; buried alive
+	dbw 2, CooltrainerMAI ; buried alive in the footage uses xattack twice, just like the cooltrainerm ai
 	assert_table_length NUM_TRAINERS
