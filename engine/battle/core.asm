@@ -1193,6 +1193,8 @@ GameOverScript:
 	ld a, SFX_STOP_ALL_MUSIC
 	call PlaySound ; kill music
 	; pretty much get rid of the game, its time to draw the game over screen!
+	ld b, SET_PAL_GENERIC
+	call RunPaletteCommand ; set palette to generic to avoid wrong colors on SGB
 	ld de, BuriedGameOverPic
 	lb bc, BANK(BuriedGameOverPic), $00
 	call DisplayPicCentered ; render game over image
