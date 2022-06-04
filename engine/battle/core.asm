@@ -1156,6 +1156,7 @@ HandlePlayerBlackOut:
 	;call ScrollTrainerPicAfterBattle
 	;ld c, 40
 	;call DelayFrames
+	call LoadHpBarAndStatusTilePatternsAlt
 	ld hl, BuriedAliveBattleLostText1 ; text 1
 	call PrintText
 	ld a, SFX_STOP_ALL_MUSIC ; kill music just like in the video when text 2 appears
@@ -1190,6 +1191,7 @@ GameOverScript:
 	call ClearScreen ; turn the screen shite
 	ld [wUpdateSpritesEnabled], a
 	call ClearSprites ; clear all the currents sprites
+	call LoadHpBarAndStatusTilePatterns
 	ld a, SFX_STOP_ALL_MUSIC
 	call PlaySound ; kill music
 	; pretty much get rid of the game, its time to draw the game over screen!

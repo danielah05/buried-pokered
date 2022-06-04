@@ -45,3 +45,19 @@ LoadHpBarAndStatusTilePatterns::
 	ld hl, vChars2 tile $62
 	lb bc, BANK(HpBarAndStatusGraphics), (HpBarAndStatusGraphicsEnd - HpBarAndStatusGraphics) / $10
 	jp CopyVideoData ; if LCD is on, transfer during V-blank
+
+LoadHpBarAndStatusTilePatternsAlt::
+	ldh a, [rLCDC]
+	bit 7, a ; is the LCD enabled?
+	jr nz, .on
+.off
+	ld hl, HpBarAndStatusGraphicsAlt
+	ld de, vChars2 tile $62
+	ld bc, HpBarAndStatusGraphicsAltEnd - HpBarAndStatusGraphicsAlt
+	ld a, BANK(HpBarAndStatusGraphicsAlt)
+	jp FarCopyData2 ; if LCD is off, transfer all at once
+.on
+	ld de, HpBarAndStatusGraphicsAlt
+	ld hl, vChars2 tile $62
+	lb bc, BANK(HpBarAndStatusGraphicsAlt), (HpBarAndStatusGraphicsAltEnd - HpBarAndStatusGraphicsAlt) / $10
+	jp CopyVideoData ; if LCD is on, transfer during V-blank

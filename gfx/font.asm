@@ -7,6 +7,9 @@ ABTiles: INCBIN "gfx/font/AB.2bpp"
 HpBarAndStatusGraphics:: INCBIN "gfx/font/font_battle_extra.2bpp"
 HpBarAndStatusGraphicsEnd::
 
+HpBarAndStatusGraphicsAlt:: INCBIN "gfx/font/font_battle_extra_gold.2bpp"
+HpBarAndStatusGraphicsAltEnd::
+
 BattleHudTiles1: INCBIN "gfx/battle/battle_hud_1.1bpp"
 BattleHudTiles1End:
 BattleHudTiles2: INCBIN "gfx/battle/battle_hud_2.1bpp"
