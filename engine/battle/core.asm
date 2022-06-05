@@ -1150,13 +1150,7 @@ HandlePlayerBlackOut:
 .BuriedAliveBattle
 	cp OPP_BURIEDALIVE
 	jr nz, .notRival1Battle ; make sure to exit this code if we arent battling buried alive
-	;hlcoord 0, 0  ; buried alive end animation, needs a lot of tweaking
-	;lb bc, 8, 21
-	;call ClearScreenArea
-	;call ScrollTrainerPicAfterBattle
-	;ld c, 40
-	;call DelayFrames
-	call LoadHpBarAndStatusTilePatternsAlt
+	call LoadHpBarAndStatusTilePatternsAlt ; gold text box assets
 	ld hl, BuriedAliveBattleLostText1 ; text 1
 	call PrintText
 	ld a, SFX_STOP_ALL_MUSIC ; kill music just like in the video when text 2 appears
@@ -1204,6 +1198,8 @@ GameOverScript:
 	ld a, MUSIC_LAVENDER
 	call PlayMusic ; start lavender town music
 	call FadeInPic
+	ld hl, wd730 ; hex d730
+	set 6, [hl] ; set it to 6, this instantly renders the text
 	ld hl, GraveGameOverText ; render gameover text
 	call PrintText
 .loop ; yes i use a loop here, without it the game would continue the blacking out code. very shitty method of fixing it but it works
